@@ -2,6 +2,11 @@ export default class Slide {
   constructor(slide, wraper) {
     this.slide = document.querySelector(slide);
     this.wraper = document.querySelector(wraper);
+    this.dist = {
+      finalPosition: 0,
+      startX: 0,
+      movement: 0,
+    };
   }
 
   onStart(event) {
@@ -10,7 +15,9 @@ export default class Slide {
     this.wraper.addEventListener("mousemove", this.onMove);
   }
 
-  onMove(event) {}
+  onMove(event) {
+    
+  }
 
   onEnd() {
     this.wraper.removeEventListener("mousemove", this.onMove);
