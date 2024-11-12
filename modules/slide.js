@@ -33,6 +33,7 @@ export default class Slide {
   onEnd() {
     this.wraper.removeEventListener("mousemove", this.onMove);
     this.dist.finalPosition = this.dist.movePosition;
+    console.log("oi");
   }
 
   addSlideEvents() {
