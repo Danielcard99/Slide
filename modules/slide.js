@@ -9,18 +9,30 @@ export default class Slide {
     };
   }
 
+  moveSlide(distX) {
+    this.dist.movePosition = distX;
+    this.slide.style.transform = `translate3d(${distX}px, 0, 0)`;
+  }
+
+  updatePosition(clientX) {
+    this.dist.movement = (this.dist.startX - clientX) * 1.4;
+    return this.dist.finalPosition - this.dist.movement;
+  }
+
   onStart(event) {
     event.preventDefault();
-    console.log("mousedown");
+    this.dist.startX = event.clientX;
     this.wraper.addEventListener("mousemove", this.onMove);
   }
 
   onMove(event) {
-    
+    const finalPosition = this.updatePosition(event.clientX);
+    this.moveSlide(finalPosition);
   }
 
   onEnd() {
     this.wraper.removeEventListener("mousemove", this.onMove);
+    this.dist.finalPosition = this.dist.movePosition;
   }
 
   addSlideEvents() {
